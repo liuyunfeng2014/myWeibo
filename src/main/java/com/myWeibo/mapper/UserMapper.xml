@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.myWeibo.mapper.UserMapper">
+    <resultMap id="userMapper" type="com.myWeibo.pojo.User">
+        <id column="user_id" property="userId" javaType="int" />
+        <result column="user_name" property="userName" javaType="java.lang.String" />
+        <result column="user_pwd" property="userPwd" javaType="java.lang.String" />
+        <result column="user_type" property="userType" javaType="int" />
+    </resultMap>
+    <select id="authentication" resultMap="userMapper" parameterType="User" >
+		select * from users where user_name=#{user.userName} and user_pwd=#{user.userPwd}    
+    </select>
+    
+     <select id="selectByUsername" resultMap="userMapper">
+  			select * from users where user_name=#{name}
+  	</select>
+</mapper>
